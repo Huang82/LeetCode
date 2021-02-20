@@ -2,36 +2,29 @@
 import java.util.*;
 
 public class main {
-    public static void main (String argsp[]) {
-        int sum = -1234;
+    public static void main (String args[]) {
+        int sum = -1234564;
         
         System.out.println(reverse(sum));
     }
 
     public static int reverse(int x) {
-        boolean s = false;
-        String str = "";
-
-        if (x < 0){
-            x = Math.abs(x);
-            s = true;
-        }
+        int ans = 0; 
         while (x != 0) {
-            str += x % 10;
-            x /= 10;
-        }
-        try {
-            if (Integer.parseInt(str) > Integer.MAX_VALUE) {
+            int t = x % 10;
+            int a = ans * 10 + t;
+            if ((a - t)/10 != ans){
                 return 0;
             }
-        } catch (Exception ex) {
-            return 0;
+            ans = a;
+            x /= 10;
         }
-
-        if (s) {
-            str = "-" + str;
-        }
-
-        return Integer.parseInt(str);
+        return ans;
     }
 }   
+/* 
+    解題方向：
+        這題要考慮到溢位，
+        檢查溢位可以用當迴圈加完之後來檢查，加完後如果扣回去再除與10一定會等於原本的數字，
+        但如果數字溢位了，儲存的數字就會改變，就代表此組數字是為溢位
+*/
