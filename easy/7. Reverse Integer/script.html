@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reverse Integer</title>
+        <script>
+
+            var reverse = function(x) {
+                var t = 0;
+                var minInt = Math.pow(-2, 31);
+                var maxInt = Math.pow(2, 31) -1;
+                while (x != 0) {
+                    var Ans = (t * 10) + (x % 10);
+                    if (Ans >= maxInt || Ans <= minInt) { return 0;}
+                    t = Ans;
+                    x = mathInt(x / 10);
+                }
+                return t;
+            };
+
+            var mathInt = function(x) {
+                if (x < 0){
+                    x = ((x * 10) - (Math.floor((x * 10) % 10))) / 10;
+                } else {
+                    x = ((x * 10) - (Math.ceil((x * 10) % 10))) / 10;
+                }
+                return x;
+            }
+        </script>
+    </head>
+    <body>
+        <p id="ans"></p>
+        <script>
+            document.getElementById("ans").innerText = reverse(153423646);
+        </script>
+    </body>
+</html>
