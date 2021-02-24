@@ -5,15 +5,25 @@
         <title>Two Sum</title>
         <script>
 
+        var data = {
+            value: NaN,
+            key: NaN,
+            next: null
+        };
+        var allData = new Object();
         var twoSum = function(nums, target) {
             for (var i=0 ; i<nums.length ; i++) {
-                for (var j=0 ; j<nums.length ; j++) {
-                    if (i != j) {
-                        if ((nums[i] + nums[j]) == target) {
-                            return a = [i,j];
-                        }
+                var first = allData;
+                var n = target - nums[i];
+                while (first.next != null) {
+                    if (first.key == n) {
+                        return [first.value, i];
                     }
-                } 
+                    first = first.next;
+                }
+                first.value = i;
+                first.key = nums[i];
+                first.next = new Object(); 
             }
             return 0;
         };
@@ -23,7 +33,7 @@
     <body>
         <p id="ans"></p>
         <script>
-            document.getElementById("ans").innerText = twoSum([2,7,11,15], 9);
+            document.getElementById("ans").innerText = twoSum([3,2,4], 6);
         </script>
     </body>
 </html>
